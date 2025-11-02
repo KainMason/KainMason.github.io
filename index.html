@@ -1,20 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kain Mason | ePortfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kain Mason | CS 499 ePortfolio</title>
+  <meta name="description" content="ePortfolio showcasing software engineering, AI/algorithms, and databases/security projects by Kain Mason." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0e1116; --card:#141a22; --muted:#9fb0c3; --text:#e6edf3; --accent:#72a7ff; --accent2:#78f0c4; --border:#223045;
+      --ring: 0 0 0 3px rgba(114,167,255,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji"; 
+      background:radial-gradient(1200px 600px at 70% -10%, rgba(120,240,196,.08), transparent 60%),
+                 radial-gradient(1000px 500px at -20% 10%, rgba(114,167,255,.10), transparent 60%), var(--bg);
+      color:var(--text); line-height:1.6;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .shell{max-width:1100px; margin:0 auto; padding:32px 20px 64px}
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0 28px; position:sticky; top:0; backdrop-filter:saturate(140%) blur(6px);
+    }
+    .brand{display:flex; align-items:center; gap:14px}
+    .logo{
+      width:40px; height:40px; border-radius:12px; background:
+        radial-gradient(100% 100% at 20% 10%, var(--accent2), transparent 40%),
+        linear-gradient(135deg, #1b2533, #0f1520 65%);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
+    }
+    h1{font-size:clamp(26px, 2vw + 16px, 40px); line-height:1.2; margin:0}
+    .muted{color:var(--muted)}
+    .tag{display:inline-block; padding:6px 10px; border:1px solid var(--border); border-radius:999px; font-size:12px; color:var(--muted)}
+    .hero{
+      margin:8px 0 28px; padding:22px; border:1px solid var(--border); border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      box-shadow: 0 10px 40px rgba(0,0,0,.25), inset 0 0 50px rgba(255,255,255,.02);
+    }
+    .hero p{margin:.35rem 0}
+    .grid{
+      display:grid; grid-template-columns:repeat(12,1fr); gap:18px; margin-top:18px;
+    }
+    .card{
+      grid-column: span 12; padding:20px; border:1px solid var(--border); border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      position:relative; overflow:hidden;
+    }
+    .card:hover{transform:translateY(-3px); box-shadow:0 16px 50px rgba(0,0,0,.35); border-color:#2a3a55}
+    .card h3{margin:0 0 4px; font-size:20px}
+    .pill{display:inline-flex; align-items:center; gap:8px; font-size:12px; color:var(--muted); margin:10px 0 14px}
+    .pill .dot{width:8px; height:8px; border-radius:999px; background:var(--accent)}
+    .stack{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 14px}
+    .chip{border:1px solid var(--border); color:var(--muted); padding:6px 10px; border-radius:999px; font-size:12px}
+    .actions{display:flex; gap:10px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid var(--border); color:var(--text); text-decoration:none;
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .btn:hover{transform:translateY(-1px); border-color:#2a3a55; box-shadow:var(--ring)}
+    .btn.primary{background:linear-gradient(180deg, rgba(114,167,255,.15), rgba(114,167,255,.05)); border-color:#2f466c}
+    .btn.ghost{background:transparent}
+    .kicker{font-weight:600; letter-spacing:.08em; font-size:11px; color:var(--muted); text-transform:uppercase}
+    .section h2{margin:28px 0 6px; font-size:22px}
+    .footer{
+      margin-top:44px; padding:20px; border-top:1px solid var(--border); color:var(--muted); font-size:14px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    }
+    /* layout on desktop */
+    @media (min-width: 800px){
+      .card{grid-column: span 6}
+    }
+    /* dark mode toggle */
+    .toggle{border:1px solid var(--border); border-radius:999px; padding:8px 12px; font-size:13px; color:var(--muted); cursor:pointer; background:transparent}
+    .right{display:flex; align-items:center; gap:10px}
+    /* simple code-like blocks */
+    pre{
+      margin:14px 0 0; padding:12px; border:1px dashed var(--border); border-radius:12px; background:#0b0f15; color:#cfe3ff; overflow:auto; font-size:12px;
+    }
+  </style>
 </head>
-<body style="font-family: Arial, sans-serif; margin: 40px;">
-    <h1>Kain Mason – CS 499 ePortfolio</h1>
-    <p>Welcome to my ePortfolio. Here you’ll find selected projects that represent my skills in:</p>
-    <ul>
-        <li><strong>Software Design & Engineering:</strong> <a href="https://github.com/KainMason/CS465-Final-Project">Travlr Getaways (MEAN Stack App)</a></li>
-        <li><strong>Algorithms & Data Structures:</strong> <a href="https://github.com/KainMason/CS-370-Pirate-Intelligent-Agent-Project">Pirate Intelligent Agent (Reinforcement Learning)</a></li>
-        <li><strong>Databases & Security:</strong> <a href="https://github.com/KainMason/The-Artemis-Financial-Vulnerability-Assessment-Report-Project-One-">Artemis Financial Vulnerability Assessment</a></li>
-    </ul>
-    <p>Each project includes documentation, enhancements, and reflection showing my growth as a computer science professional.</p>
-    <hr>
-    <p>© 2025 Kain Mason | Built with GitHub Pages</p>
+<body>
+  <div class="shell">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div class="kicker">ePortfolio</div>
+          <h1>Kain Mason</h1>
+          <div class="muted">Software Engineering • AI/Algorithms • Databases & Security</div>
+        </div>
+      </div>
+      <div class="right">
+        <a class="tag" href="mailto:kainmason1@gmail.com">Contact</a>
+        <button id="mode" class="toggle" aria-label="Toggle theme">Toggle theme</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <p>Hey! I’m Kain. This site highlights three artifacts I’m enhancing for my CS-499 capstone. Each project includes a short summary, skills showcased, and links to code.</p>
+      <p class="muted">Tip for instructors: This homepage URL can be used as the screenshot for “ePortfolio Setup.”</p>
+    </section>
+
+    <section class="section">
+      <h2>Featured Projects</h2>
+      <div class="grid">
+        <!-- Software Engineering & Design -->
+        <article class="card">
+          <div class="pill"><span class="dot"></span><span>Software Design & Engineering</span></div>
+          <h3>Travlr Getaways (MEAN Stack)</h3>
+          <p class="muted">Full-stack app using Angular + Express + MongoDB. Admin SPA with reusable components, auth, and REST API.</p>
+          <div class="stack">
+            <span class="chip">Angular</span><span class="chip">Node/Express</span><span class="chip">MongoDB</span><span class="chip">JWT</span>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="https://github.com/KainMason/CS465-Final-Project" target="_blank" rel="noopener">View Repository</a>
+            <a class="btn ghost" href="#travlr-notes">Enhancement Plan</a>
+          </div>
+          <pre id="travlr-notes">Pseudocode (Auth Flow)
+if (user.submitsCredentials) {
+  if (validate(creds)) {
+    token = signJWT(user)
+    navigate('/admin')
+  } else {
+    show('Invalid login')
+  }
+}</pre>
+        </article>
+
+        <!-- Algorithms & Data Structures -->
+        <article class="card">
+          <div class="pill"><span class="dot"></span><span>Algorithms & Data Structures</span></div>
+          <h3>Pirate Intelligent Agent (Deep Q-Learning)</h3>
+          <p class="muted">Reinforcement learning agent that learns optimal treasure paths; tuning epsilon decay and rewards for stability.</p>
+          <div class="stack">
+            <span class="chip">Python</span><span class="chip">RL / DQN</span><span class="chip">Gym</span><span class="chip">Numpy</span>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="https://github.com/KainMason/CS-370-Pirate-Intelligent-Agent-Project" target="_blank" rel="noopener">View Repository</a>
+            <a class="btn ghost" href="#pirate-notes">Enhancement Plan</a>
+          </div>
+          <pre id="pirate-notes">Pseudocode (Training Loop)
+for episode in range(N):
+  s = env.reset()
+  while not done:
+    a = choose_action(s, epsilon)
+    s2, r, done, _ = env.step(a)
+    update_Q(s, a, r, s2)
+    s = s2
+  epsilon *= decay</pre>
+        </article>
+
+        <!-- Databases & Security -->
+        <article class="card">
+          <div class="pill"><span class="dot"></span><span>Databases & Security</span></div>
+          <h3>Artemis Financial Vulnerability Assessment</h3>
+          <p class="muted">Security review with demo module for hashing and encryption of sensitive data to protect database integrity.</p>
+          <div class="stack">
+            <span class="chip">AES</span><span class="chip">SHA-256</span><span class="chip">Secure Storage</span>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="https://github.com/KainMason/The-Artemis-Financial-Vulnerability-Assessment-Report-Project-One-" target="_blank" rel="noopener">View Repository</a>
+            <a class="btn ghost" href="#artemis-notes">Enhancement Plan</a>
+          </div>
+          <pre id="artemis-notes">Pseudocode (Secure Store)
+for record in sensitive_records:
+  record.password_hash = sha256(record.password)
+  record.payload = AES.encrypt(JSON.stringify(record), key)
+  db.save(record)</pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>About This ePortfolio</h2>
+      <p class="muted">Built for CS-499 to demonstrate growth across software engineering, algorithms, and databases/security. Each artifact includes a short enhancement plan aligned to course outcomes. More details are in my submission document.</p>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="y"></span> Kain Mason</div>
+      <div class="muted">Hosted on GitHub Pages • <a href="https://github.com/KainMason" target="_blank" rel="noopener">GitHub</a></div>
+    </footer>
+  </div>
+
+  <script>
+    // year + theme toggle (persists preference)
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const modeBtn = document.getElementById('mode');
+    const KEY = 'km_theme';
+    const light = {
+      '--bg':'#f6f8fc','--card':'#ffffff','--muted':'#5a6b7e','--text':'#0d1220','--accent':'#2357ff','--accent2':'#0bbf8a','--border':'#dbe3ee'
+    };
+    const dark = {
+      '--bg':'#0e1116','--card':'#141a22','--muted':'#9fb0c3','--text':'#e6edf3','--accent':'#72a7ff','--accent2':'#78f0c4','--border':'#223045'
+    };
+    const applyTheme = t => Object.entries(t).forEach(([k,v]) => document.documentElement.style.setProperty(k,v));
+    const pref = localStorage.getItem(KEY);
+    applyTheme(pref==='light' ? light : dark);
+    modeBtn.addEventListener('click', ()=>{
+      const nowLight = document.documentElement.style.getPropertyValue('--bg')==='#f6f8fc';
+      applyTheme(nowLight ? dark : light);
+      localStorage.setItem(KEY, nowLight ? 'dark':'light');
+    });
+  </script>
 </body>
 </html>
